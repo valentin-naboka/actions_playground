@@ -20,6 +20,8 @@ jobs:
       #   run:  |
       #         go test -coverprofile=coverage.out  ./... 
       #         go tool cover -html=coverage.out -o report.html
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Create Artifacts
         run: 
