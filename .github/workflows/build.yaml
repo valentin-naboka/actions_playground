@@ -11,6 +11,7 @@ jobs:
 
   artifacts:
     runs-on: ubuntu-latest
+    if: ${{ github.ref in ('refs/heads/main', 'refs/heads/dev') }}
 
     steps:  
       # - name: Build arm64
