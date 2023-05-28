@@ -1,0 +1,43 @@
+name: Build websocket server
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.20
+
+      - name: Run tests
+        run:  |
+              go test -coverprofile=coverage.out  ./... 
+              go tool cover -html=coverage.out -o coverage.html
+
+      - name: Build x86
+        run: go build -o artifacts/ws_server 
+
+      - name: Build arm64
+        run: GOOS=linux GOARCH=arm64 go build -o artifacts/ws_server_arm64
+
+      - name: Prepare artifacts
+        run: cp config/local_config.json artifacts/local_config.json
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifacts
+          path: artifacts/*
+        
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage.html
+          path: coverage.html
