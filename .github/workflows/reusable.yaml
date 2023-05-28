@@ -9,7 +9,15 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.20  # Replace with your desired Go version
+
+      - name: Build x86
+        run: go build -o app 
 
       - name: Create Artifacts
         run: |
@@ -17,10 +25,10 @@ jobs:
           touch artifacts/app
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
-          name: macOS-artifacts
-          path: artifacts/
+          name: x86-artifacts
+          path: artifacts/app
         
       # - name: Upload Coverage
       #   uses: actions/upload-artifact@v2
