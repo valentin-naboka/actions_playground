@@ -6,10 +6,10 @@ on:
       - main
 
 jobs:
-  job_test:
+  build:
     uses: .github/workflows/reusable.yaml
 
-  build:
+  artifacts:
     runs-on: ubuntu-latest
 
     steps:  
