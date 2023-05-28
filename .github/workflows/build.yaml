@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    uses: .github/workflows/reusable.yaml
+    uses: ./.github/workflows/reusable.yaml
 
   artifacts:
     runs-on: ubuntu-latest
