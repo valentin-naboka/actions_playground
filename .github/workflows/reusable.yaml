@@ -14,7 +14,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v3
         with:
-          go-version: 1.20  # Replace with your desired Go version
+          go-version: 1.19  # Replace with your desired Go version
 
       - name: Build x86
         run: go build -o app 
