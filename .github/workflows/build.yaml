@@ -23,15 +23,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Create Artifacts
-        run: 
-          cp config/config.json artifacts/config.json
-
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: x86-artifacts
-          path: artifacts/config.json
+          path: config/config.json
         
       - name: Upload Coverage
         uses: actions/upload-artifact@v3
